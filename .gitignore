@@ -1,0 +1,5 @@
+dwm
+pkg
+src
+*.diff
+*.zst
