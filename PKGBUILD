@@ -26,6 +26,7 @@ prepare() {
       patch -d "$srcroot" -p1 -i "$BUILDDIR/$(basename $patch)"
    done
    patch -d "$srcroot" -p1 -i "$BUILDDIR/font-size.diff"
+   patch -d "$srcroot" -p1 -i "$BUILDDIR/key-bindings.diff"
    cp "$srcroot/config.def.h" "$srcroot/config.h"
 }
 
