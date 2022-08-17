@@ -1,5 +1,5 @@
 diff --git a/config.def.h b/config.def.h
-index 56488f7..fe6cfc9 100644
+index 7c85540..1dac80d 100644
 --- a/config.def.h
 +++ b/config.def.h
 @@ -47,7 +47,7 @@ static const Layout layouts[] = {
@@ -11,11 +11,12 @@ index 56488f7..fe6cfc9 100644
  #define TAGKEYS(KEY,TAG) \
  	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
  	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
-@@ -61,12 +61,22 @@ static const Layout layouts[] = {
+@@ -61,18 +61,30 @@ static const Layout layouts[] = {
  static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
  static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
  static const char *termcmd[]  = { "st", NULL };
 +static const char *browsercmd[]  = { "browser",  NULL };
++static const char *logoutcmd[]  = { "dmenu-logout",  NULL };
 +static const char *vol_inc_cmd[]  = { "volume", "inc", NULL };
 +static const char *vol_dec_cmd[]  = { "volume", "dec", NULL };
 +static const char *vol_up_cmd[]  = { "volume", "up", NULL };
@@ -29,6 +30,7 @@ index 56488f7..fe6cfc9 100644
 +	{ MODKEY,                       XK_space,  spawn,          {.v = dmenucmd } },
 +	{ MODKEY,                       XK_x,      spawn,          {.v = termcmd } },
 +	{ MODKEY,                       XK_b,      spawn,          {.v = browsercmd } },
++	{ MODKEY,                       XK_l,      spawn,          {.v = logoutcmd } },
 +	{ MODKEY,                       XK_plus,   spawn,          {.v = vol_inc_cmd } },
 +	{ MODKEY,                       XK_numbersign,   spawn,    {.v = vol_dec_cmd } },
 +	{ MODKEY|ShiftMask,             XK_plus,   spawn,          {.v = vol_up_cmd } },
@@ -37,7 +39,15 @@ index 56488f7..fe6cfc9 100644
  	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
  	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
  	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
-@@ -81,7 +91,6 @@ static Key keys[] = {
+ 	{ MODKEY,                       XK_d,      incnmaster,     {.i = -1 } },
+-	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
+-	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
++	{ MODKEY|ShiftMask,             XK_h,      setmfact,       {.f = -0.05} },
++	{ MODKEY|ShiftMask,             XK_l,      setmfact,       {.f = +0.05} },
+ 	{ MODKEY,                       XK_Return, zoom,           {0} },
+ 	{ MODKEY,                       XK_Tab,    view,           {0} },
+ 	{ MODKEY|ShiftMask,             XK_c,      killclient,     {0} },
+@@ -81,7 +93,6 @@ static Key keys[] = {
  	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
  	{ MODKEY,                       XK_u,      setlayout,      {.v = &layouts[3]} },
  	{ MODKEY,                       XK_o,      setlayout,      {.v = &layouts[4]} },
