@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # Maintainer: Gino Gravanis
 
 pkgname=dwm
@@ -23,7 +24,7 @@ md5sums=(
 prepare() {
    local srcroot="$srcdir/$pkgname"
    for patch in "${source[@]:1}"; do
-      patch -d "$srcroot" -p1 -i "$BUILDDIR/$(basename $patch)"
+      patch -d "$srcroot" -p1 -i "$BUILDDIR/$(basename "$patch")"
    done
    patch -d "$srcroot" -p1 -i "$BUILDDIR/font-size.diff"
    patch -d "$srcroot" -p1 -i "$BUILDDIR/key-bindings.diff"
