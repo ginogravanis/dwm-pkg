@@ -1,5 +1,5 @@
 diff --git a/config.def.h b/config.def.h
-index e87496e..4ed9558 100644
+index acd4e43..556a5bf 100644
 --- a/config.def.h
 +++ b/config.def.h
 @@ -47,7 +47,7 @@ static const Layout layouts[] = {
@@ -11,9 +11,9 @@ index e87496e..4ed9558 100644
  #define TAGKEYS(KEY,TAG) \
  	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
  	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
-@@ -61,18 +61,31 @@ static const Layout layouts[] = {
- static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
- static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
+@@ -60,27 +60,38 @@ static const Layout layouts[] = {
+ /* commands */
+ static const char *dmenucmd[] = { "dmenu_run", "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
  static const char *termcmd[]  = { "st", NULL };
 +static const char *browsercmd[]  = { "browser",  NULL };
 +static const char *logoutcmd[]  = { "dmenu-logout",  NULL };
@@ -21,7 +21,6 @@ index e87496e..4ed9558 100644
 +static const char *vol_dec_cmd[]  = { "volume", "dec", NULL };
 +static const char *vol_up_cmd[]  = { "volume", "up", NULL };
 +static const char *vol_down_cmd[]  = { "volume", "down", NULL };
-+
  
  static const Key keys[] = {
  	/* modifier                     key        function        argument */
@@ -47,8 +46,10 @@ index e87496e..4ed9558 100644
 +	{ MODKEY|ShiftMask,             XK_l,      setmfact,       {.f = +0.05} },
  	{ MODKEY,                       XK_Return, zoom,           {0} },
  	{ MODKEY,                       XK_Tab,    view,           {0} },
- 	{ MODKEY|ShiftMask,             XK_c,      killclient,     {0} },
-@@ -81,7 +94,6 @@ static const Key keys[] = {
+-	{ MODKEY|ShiftMask,             XK_c,      killclient,     {0} },
++	{ MODKEY,                       XK_c,      killclient,     {0} },
+ 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
+ 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
  	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
  	{ MODKEY,                       XK_u,      setlayout,      {.v = &layouts[3]} },
  	{ MODKEY,                       XK_o,      setlayout,      {.v = &layouts[4]} },
