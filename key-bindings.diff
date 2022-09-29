@@ -1,5 +1,5 @@
 diff --git a/config.def.h b/config.def.h
-index acd4e43..556a5bf 100644
+index acd4e43..199cd75 100644
 --- a/config.def.h
 +++ b/config.def.h
 @@ -47,7 +47,7 @@ static const Layout layouts[] = {
@@ -11,10 +11,12 @@ index acd4e43..556a5bf 100644
  #define TAGKEYS(KEY,TAG) \
  	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
  	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
-@@ -60,27 +60,38 @@ static const Layout layouts[] = {
+@@ -59,28 +59,39 @@ static const Layout layouts[] = {
+ 
  /* commands */
  static const char *dmenucmd[] = { "dmenu_run", "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
- static const char *termcmd[]  = { "st", NULL };
+-static const char *termcmd[]  = { "st", NULL };
++static const char *termcmd[]  = { "st", "-e", "tmux", NULL };
 +static const char *browsercmd[]  = { "browser",  NULL };
 +static const char *logoutcmd[]  = { "dmenu-logout",  NULL };
 +static const char *vol_inc_cmd[]  = { "volume", "inc", NULL };
