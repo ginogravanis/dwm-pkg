@@ -16,6 +16,10 @@ source=(
    'git+https://git.suckless.org/dwm'
    'https://dwm.suckless.org/patches/centeredmaster/dwm-centeredmaster-20160719-56a31dc.diff'
 )
+extra_patches=(
+   'font-size.diff'
+   'key-bindings.diff'
+)
 md5sums=(
    'SKIP'
    '0051114992d940bc2ce1ed9ddcdcd8f8'
@@ -23,11 +27,9 @@ md5sums=(
 
 prepare() {
    local srcroot="$srcdir/$pkgname"
-   for patch in "${source[@]:1}"; do
+   for patch in "${source[@]:1}" "${extra_patches[@]}"; do
       patch -d "$srcroot" -p1 -i "$BUILDDIR/$(basename "$patch")"
    done
-   patch -d "$srcroot" -p1 -i "$BUILDDIR/font-size.diff"
-   patch -d "$srcroot" -p1 -i "$BUILDDIR/key-bindings.diff"
    cp "$srcroot/config.def.h" "$srcroot/config.h"
 }
 
