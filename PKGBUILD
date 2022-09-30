@@ -12,26 +12,8 @@ depends=()
 makedepends=('git')
 provides=()
 conflicts=()
-source=(
-   'git+https://git.suckless.org/dwm'
-   'https://dwm.suckless.org/patches/centeredmaster/dwm-centeredmaster-20160719-56a31dc.diff'
-)
-extra_patches=(
-   'font-size.diff'
-   'key-bindings.diff'
-)
-md5sums=(
-   'SKIP'
-   '0051114992d940bc2ce1ed9ddcdcd8f8'
-)
-
-prepare() {
-   local srcroot="$srcdir/$pkgname"
-   for patch in "${source[@]:1}" "${extra_patches[@]}"; do
-      patch -d "$srcroot" -p1 -i "$BUILDDIR/$(basename "$patch")"
-   done
-   cp "$srcroot/config.def.h" "$srcroot/config.h"
-}
+source=('git+https://github.com/ginogravanis/dwm.git')
+md5sums=('SKIP')
 
 pkgver() {
    git -C "$srcdir/$pkgname" describe --long --tags | sed 's/-/./g'
@@ -43,7 +25,6 @@ build() {
 
 package() {
    local srcroot="$srcdir/$pkgname"
-   local license_dir="$pkgdir/usr/share/licenses/$pkgname"
    make -C "$srcdir/$pkgname" PREFIX=/usr DESTDIR="$pkgdir/" install
    install -Dm644 "$srcroot/LICENSE" "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
    install -Dm644 "$srcroot/README" "$pkgdir/usr/share/doc/$pkgname/README"
